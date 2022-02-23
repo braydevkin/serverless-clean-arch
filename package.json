@@ -1,0 +1,39 @@
+{
+    "name": "serverless-clean-arch",
+    "version": "0.0.1",
+    "main": "handler.ts",
+    "private": true,
+    "repository": "https://github.com/braydevkin/serverless-clean-arch.git",
+    "author": "Brayan <job.brquirino@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "lint": "turbo run lint",
+        "lint:fix": "turbo run lint:fix",
+        "dev": "serverless offline",
+        "test": "turbo run test",
+        "build:package": "turbo run build:package",
+        "format": "prettier --write \"{packages,services}/**/*.{ts,js,css,html, yml}\""
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.92",
+        "@types/jasmine": "^3.10.3",
+        "aws-lambda": "^1.0.7",
+        "aws-sdk": "^2.1079.0",
+        "eslint": "^8.9.0",
+        "eslint-config-prettier": "^8.4.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "jasmine-core": "^4.0.1",
+        "karma": "^6.3.16",
+        "karma-chrome-launcher": "^3.1.0",
+        "karma-jasmine": "^4.0.1",
+        "karma-webpack": "^5.0.0",
+        "prettier": "^2.5.1",
+        "serverless-offline": "^8.5.0",
+        "serverless-plugin-typescript": "^2.1.1",
+        "ts-loader": "^9.2.6",
+        "ts-node": "^10.5.0",
+        "typescript": "^4.5.5",
+        "webpack": "^5.69.1",
+        "webpack-dev-server": "^4.7.4"
+    }
+}
