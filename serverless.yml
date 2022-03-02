@@ -44,7 +44,7 @@ functions:
     events:
       - httpApi:
           path: /create
-          method: get
+          method: post
   
 
 plugins:
