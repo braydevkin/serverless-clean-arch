@@ -3,20 +3,25 @@ import { Product } from './src/entities/product/product';
 import { IProductData } from './src/entities/product/product.data';
 
 export const hello = async (event: APIGatewayProxyEvent) => {
-    const product: IProductData = event.body as unknown as IProductData;
+    const product: IProductData = JSON.parse(event.body as string);
     const f = new Product(product);
-    const result = await f.validation(product);
 
-    if (result) {
-        console.log(result)
+    const { value, statusCode, message } = await f.validation(product);
+
+    if (statusCode == 200) {
         return {
-            statusCode: 200,
-            body: JSON.stringify(result),
+            statusCode: statusCode,
+            body: JSON.stringify({
+                message,
+                value,
+            }),
         };
     }
 
     return {
-        statusCode: 400,
-        body: JSON.stringify(result),
+        statusCode: statusCode,
+        body: JSON.stringify({
+            message: message,
+        }),
     };
 };

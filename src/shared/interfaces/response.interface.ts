@@ -17,6 +17,6 @@ export interface ISuccess<D> {
 }
 
 export interface IResponse<Q, D, H> {
-    handleError: (E: IError<Q, D, H>) => Promise<void>;
+    handleError: (E: IError<Q, D, H>) => Promise<IError<Q, D, H>>;
     handleSuccess: (S: ISuccess<D>) => Promise<void>;
 }
