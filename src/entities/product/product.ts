@@ -12,7 +12,7 @@ export class Product implements IEntity<IProductData> {
         product = this.productData;
     }
 
-    async validation(data: IProductData): Promise<Left & Right> {
+    async validation(data: IProductData = this.productData): Promise<Left & Right> {
         const valid = Validate(ProductSchema, data);
 
         if (!valid.error) {

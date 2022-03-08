@@ -1,5 +1,5 @@
 import { IProductData } from '../entities/product/product.data';
-import { Email, MaxLength, Optional, Required } from 'joi-typescript-validator';
+import { Optional, Required } from 'joi-typescript-validator';
 
 export class ProductSchema implements IProductData {
     @Required()
