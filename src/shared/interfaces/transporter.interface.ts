@@ -5,4 +5,5 @@ export interface Left {
     statusCode: number;
     message: string;
     value: any;
+    hasError: boolean;
 }
