@@ -1,12 +1,13 @@
-import { Product } from 'entities/product/product';
-import { IProductData } from 'entities/product/product.data';
-import { DatabaseRepository } from 'shared/repositories/database';
+import { Product } from "../../entities/product/product";
+import { IProductData } from "../../entities/product/product.data";
+import { DatabaseRepository } from "../../shared/repositories/database";
+
 
 export class RegisterProductRepository implements DatabaseRepository<IProductData> {
-    public readonly repository!: DatabaseRepository<IProductData>;
+    public readonly repository: DatabaseRepository<IProductData>;
 
     constructor(repository: DatabaseRepository<IProductData>) {
-        repository = this.repository;
+        this.repository = repository;
     }
 
     async create(data: IProductData): Promise<IProductData> {

@@ -14,8 +14,4 @@ export const MongoHelper = {
     clearCollection(name: string): void {
         this.client.db().collection(name).deleteMany({});
     },
-
-    teste() {
-        this.client;
-    },
 };

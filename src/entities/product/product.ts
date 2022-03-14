@@ -3,7 +3,7 @@ import { IEntity } from '../../shared/interfaces/entity.interface';
 import { IProductData } from './product.data';
 import { Validate } from 'joi-typescript-validator';
 import { transporteToLeft, transporteToRight } from '../../transporter';
-import { Left, Right } from 'shared/interfaces/transporter.interface';
+import { Left, Right } from '../../shared/interfaces/transporter.interface';
 
 export class Product implements IEntity<IProductData> {
     private readonly productData!: IProductData;
@@ -20,6 +20,7 @@ export class Product implements IEntity<IProductData> {
                 value: data,
                 message: 'Transporting product data',
                 statusCode: 200,
+                hasError: false,
             });
         }
 
@@ -27,6 +28,7 @@ export class Product implements IEntity<IProductData> {
             statusCode: 404,
             message: valid.error.message,
             value: data,
+            hasError: true,
         });
     }
 }

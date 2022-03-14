@@ -1,27 +1,14 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import { Product } from './src/entities/product/product';
-import { IProductData } from './src/entities/product/product.data';
+import { ProductAdapter } from '././src/adapter/product.adapter';
+import { MongoHelper } from '././src/repositories/database/mongodb/helper';
+import { MONGO_URI } from './configs/constants';
 
 export const hello = async (event: APIGatewayProxyEvent) => {
-    const product: IProductData = JSON.parse(event.body as string);
-    const f = new Product(product);
+    const connected = await MongoHelper.connect(MONGO_URI as string);
 
-    const { value, statusCode, message } = await f.validation(product);
-
-    if (statusCode == 200) {
-        return {
-            statusCode: statusCode,
-            body: JSON.stringify({
-                message,
-                value,
-            }),
-        };
+    if (connected) {
+        return new ProductAdapter(event).create();
     }
 
-    return {
-        statusCode: statusCode,
-        body: JSON.stringify({
-            message: message,
-        }),
-    };
+    return false;
 };

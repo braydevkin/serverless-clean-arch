@@ -1,4 +1,4 @@
-import { Left, Right } from 'shared/interfaces/transporter.interface';
+import { Left, Right } from '../shared/interfaces/transporter.interface';
 
 export const transporteToRight = async ({
     value,
