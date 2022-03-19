@@ -1,21 +1,23 @@
 import { ProductSchema } from '../../schemas/Product';
 import { IEntity } from '../../shared/interfaces/entity.interface';
 import { IProductData } from './product.data';
-import { Validate } from 'joi-typescript-validator';
 import { transporteToLeft, transporteToRight } from '../../transporter';
 import { Left, Right } from '../../shared/interfaces/transporter.interface';
 
 export class Product implements IEntity<IProductData> {
-    private readonly productData!: IProductData;
+    private readonly productData: IProductData;
 
     constructor(product: IProductData) {
-        product = this.productData;
+        this.productData = product;
     }
 
-    async validation(data: IProductData = this.productData): Promise<Left & Right> {
-        const valid = Validate(ProductSchema, data);
+    static async Validate(data: IProductData): Promise<boolean> {
+        if (data.price < 0) return false;
+        return true;
+    }
 
-        if (!valid.error) {
+    async create(data: IProductData = this.productData): Promise<Left & Right> {
+        if (await Product.Validate(data)) {
             return await transporteToRight({
                 value: data,
                 message: 'Transporting product data',
@@ -26,7 +28,7 @@ export class Product implements IEntity<IProductData> {
 
         return await transporteToLeft({
             statusCode: 404,
-            message: valid.error.message,
+            message: 'Product entity error',
             value: data,
             hasError: true,
         });
