@@ -7,7 +7,7 @@ export const hello = async (event: APIGatewayProxyEvent) => {
     const connected = await MongoHelper.connect(MONGO_URI as string);
 
     if (connected) {
-        return new ProductAdapter(event).create();
+        return ProductAdapter.create(event.body as any);
     }
 
     return false;

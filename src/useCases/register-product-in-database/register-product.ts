@@ -1,7 +1,6 @@
-import { Product } from "../../entities/product/product";
-import { IProductData } from "../../entities/product/product.data";
-import { DatabaseRepository } from "../../shared/repositories/database";
-
+import { Product } from '../../entities/product/product';
+import { IProductData } from '../../entities/product/product.data';
+import { DatabaseRepository } from '../../shared/repositories/database';
 
 export class RegisterProductRepository implements DatabaseRepository<IProductData> {
     public readonly repository: DatabaseRepository<IProductData>;
@@ -11,7 +10,7 @@ export class RegisterProductRepository implements DatabaseRepository<IProductDat
     }
 
     async create(data: IProductData): Promise<IProductData> {
-        const productValidation = await new Product(data).validation();
+        const productValidation = await new Product(data).create();
 
         if (productValidation.statusCode !== 200) {
             throw new Error(`Not possible create product in the repository`);

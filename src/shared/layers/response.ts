@@ -1,4 +1,4 @@
-import { IError, IResponse, ISuccess } from 'shared/interfaces/response.interface';
+import { IError, IResponse, ISuccess } from '../../shared/interfaces/response.interface';
 
 export class ResponseHandler<Q, D, H> implements IResponse<Q, D, H> {
     private readonly error: IError<Q, D, H> | undefined;
