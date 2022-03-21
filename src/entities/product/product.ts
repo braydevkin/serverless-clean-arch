@@ -1,7 +1,7 @@
 import { ProductSchema } from '../../schemas/Product';
 import { IEntity } from '../../shared/interfaces/entity.interface';
 import { IProductData } from './product.data';
-import { transporteToLeft, transporteToRight } from '../../transporter';
+import { transporterToLeft, transporterToRight } from '../../transporter';
 import { Left, Right } from '../../shared/interfaces/transporter.interface';
 
 export class Product implements IEntity<IProductData> {
@@ -18,7 +18,7 @@ export class Product implements IEntity<IProductData> {
 
     async create(data: IProductData = this.productData): Promise<Left & Right> {
         if (await Product.Validate(data)) {
-            return await transporteToRight({
+            return await transporterToRight({
                 value: data,
                 message: 'Transporting product data',
                 statusCode: 200,
@@ -26,7 +26,7 @@ export class Product implements IEntity<IProductData> {
             });
         }
 
-        return await transporteToLeft({
+        return await transporterToLeft({
             statusCode: 404,
             message: 'Product entity error',
             value: data,

@@ -1,6 +1,6 @@
 import { Left, Right } from '../shared/interfaces/transporter.interface';
 
-export const transporteToRight = async ({
+export const transporterToRight = async ({
     value,
     message,
     statusCode,
@@ -13,7 +13,7 @@ export const transporteToRight = async ({
         hasError,
     };
 };
-export const transporteToLeft = async ({ value, message, statusCode, hasError = true }: Left): Promise<Left> => {
+export const transporterToLeft = async ({ value, message, statusCode, hasError = true }: Left): Promise<Left> => {
     return {
         message,
         statusCode,
